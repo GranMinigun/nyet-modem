@@ -1,0 +1,4 @@
+LIBRARY "NETAPI32"
+EXPORTS
+
+Netbios = _Netbios
