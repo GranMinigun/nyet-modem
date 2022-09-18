@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nyet-modem", "nyet-modem.vcxproj", "{B6063AF0-833F-4914-BA4E-80069006BF07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6063AF0-833F-4914-BA4E-80069006BF07}.Debug|x86.ActiveCfg = Debug|Win32
+		{B6063AF0-833F-4914-BA4E-80069006BF07}.Debug|x86.Build.0 = Debug|Win32
+		{B6063AF0-833F-4914-BA4E-80069006BF07}.Release|x86.ActiveCfg = Release|Win32
+		{B6063AF0-833F-4914-BA4E-80069006BF07}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A7A1EEE-020B-42C5-8205-476DE487512C}
+	EndGlobalSection
+EndGlobal
