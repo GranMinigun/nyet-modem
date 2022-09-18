@@ -44,7 +44,12 @@ void proxy_dll()
 
 __declspec(naked) void _Netbios()
 {
+#ifdef _MSC_VER
     __asm jmp[origNetbios]
+#else
+    __asm__ volatile ("jmp %A0"
+        : : "m" (origNetbios));
+#endif
 }
 
 // Networking
@@ -154,6 +159,7 @@ int host_init()
                             else
                             {
                                 printf("Failed to set listen address\n");
+                                fclose(fp);
                                 return 1;
                             }
                         }
@@ -171,6 +177,7 @@ int host_init()
                             else
                             {
                                 printf("Failed to set connection address\n");
+                                fclose(fp);
                                 return 1;
                             }
                         }
@@ -182,6 +189,7 @@ int host_init()
                             else
                             {
                                 printf("Failed to set connection address\n");
+                                fclose(fp);
                                 return 1;
                             }
                         }
@@ -198,6 +206,7 @@ int host_init()
                             else
                             {
                                 printf("Failed to set port\n");
+                                fclose(fp);
                                 return 1;
                             }
                         }
@@ -209,6 +218,7 @@ int host_init()
                             else
                             {
                                 printf("Failed to set port\n");
+                                fclose(fp);
                                 return 1;
                             }
                         }
@@ -486,6 +496,7 @@ BOOL WINAPI _WriteFile(HANDLE hFile,
             {
                 case WSAENOTSOCK:
                     if (host_type == HOST_SERVER)
+                    {
                         if (host_try_accept() != 0)
                             return FALSE;
                         else
@@ -495,14 +506,16 @@ BOOL WINAPI _WriteFile(HANDLE hFile,
 
                             return TRUE;
                         }
+                    }
 
-                        printf("Invalid client socket; This should never happen\n");
-                        return FALSE;
+                    printf("Invalid client socket; This should never happen\n");
+                    return FALSE;
 
-                        break;
+                    break;
 
                 case WSAENOTCONN:
                     if (host_type == HOST_CLIENT)
+                    {
                         if (host_try_connect() != 0)
                             return FALSE;
                         else
@@ -512,11 +525,12 @@ BOOL WINAPI _WriteFile(HANDLE hFile,
 
                             return TRUE;
                         }
+                    }
 
-                        printf("No connection from server to client; This should never happen\n");
-                        return FALSE;
+                    printf("No connection from server to client; This should never happen\n");
+                    return FALSE;
 
-                        break;
+                    break;
 
                 default:
                     printf("Failed to send data: %d\n", err);
@@ -662,7 +676,7 @@ void deinit_hooks()
     return;
 }
 
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
     switch (ul_reason_for_call)
     {

@@ -22,7 +22,7 @@ Use included solution file in Visual Studio. Retarget if needed.
 Visual Studio Code should suffice as well, but no configuration is included.
 
 ### Linux
-Cross-compiling with MinGW currently isn't supported.
+Make sure you have Mingw-w64 installed, specifically `i686-w64-mingw32` target. Then, just run `make`.
 
 ## Third-party
 Uses SubHook by Zeex, licensed under the 2-clause BSD license: https://github.com/Zeex/subhook
